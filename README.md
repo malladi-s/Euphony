@@ -1,0 +1,2 @@
+# Euphony
+A music manager
