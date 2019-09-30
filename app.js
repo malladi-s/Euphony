@@ -8,8 +8,8 @@ const path = require('path');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const indexRouter = require('./routes/api/index');
+const usersRouter = require('./routes/api/users');
 
 mongoose.connect('mongodb://localhost/euphony');
 
