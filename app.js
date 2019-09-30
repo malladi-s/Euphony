@@ -1,10 +1,17 @@
+const cookieParser = require('cookie-parser');
 const createError = require('http-errors');
 const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
+const expressSession = require('express-session');
 const logger = require('morgan');
+const mongoose = require('mongoose');
+const path = require('path');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+
+mongoose.connect('mongodb://localhost/euphony');
 
 const app = express();
 
@@ -18,7 +25,27 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(expressSession({
+  name: 'server-session-cookie-id',
+  resave: false,
+  secret: 'secret',
+  saveUninitialized: false,
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/', indexRouter);
+app.use('/api/users', usersRouter);
+app.get('/sessionTest', (req, res) => {
+  res.json(req.session)
+})
+
+const User = require('./models/user');
+
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
