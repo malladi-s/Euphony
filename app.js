@@ -35,11 +35,12 @@ app.use(expressSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.get('/sessionTest', (req, res) => {
   res.json(req.session)
 })
+app.use('/', indexRouter);
+app.use('/*', indexRouter);
 
 const User = require('./models/user');
 
@@ -47,7 +48,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// catch 404 and forward to error handler
+// catch 404 and forward to error handler (Useless since react will handle all irrelevant frontend routes)
 app.use((req, res, next) => {
   next(createError(404));
 });
