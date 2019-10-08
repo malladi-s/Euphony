@@ -4,6 +4,13 @@ const User = require('../../models/user');
 
 const router = express.Router();
 
+router.get('/checkSession', (req, res) => {
+    if (req.user) {
+        return res.send(JSON.stringify(req.user));
+    }
+    return res.send(JSON.stringify({}));
+});
+
 router.get('/logout', (req, res) => {
     req.logout();
     return res.send(JSON.stringify(req.user));

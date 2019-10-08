@@ -1,13 +1,10 @@
-import { combineReducers, createStore } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { applyMiddleware, compose, createStore } from 'redux';
 
-import loaderReducer from '../reducers/loader';
-import authenticationReducer from '../reducers/authentication';
+import combinedReducers from '../reducers';
 
-const combinedReducers = combineReducers({
-  loader: loaderReducer,
-  authentication: authenticationReducer
-});
+const enhancer = compose(applyMiddleware(thunkMiddleware));
 
-const Store = createStore(combinedReducers);
-
-export default Store;
+export default function configureStore(initialState) {
+  return createStore(combinedReducers, initialState, enhancer)
+}

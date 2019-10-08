@@ -14,18 +14,14 @@ export default function reducer(state = initialState, action) {
             newState.isLoggingIn = true;
             return newState;
         }
-        case 'AUTHENTICATION_LOGIN_FAILURE': {
-            const newState = {
-                firstName: '',
-                id: '',
-                isLoggedIn: false,
-                isLoggingIn: false,
-                lastName: '',
-                username: '',
-            };
+        case 'AUTHENTICATION_LOGIN_FAILURE':
+        case 'AUTHENTICATION_SESSION_CHECK_FAILURE':
+        case 'AUTHENTICATION_LOGOUT_SUCCESS': {
+            const newState = Object.assign({}, initialState);
             return newState;
         }
-        case 'AUTHENTICATION_LOGIN_SUCCESS': {
+        case 'AUTHENTICATION_LOGIN_SUCCESS':
+        case 'AUTHENTICATION_SESSION_CHECK_SUCCESS': {
             const newState = Object.assign({}, state);
             newState.firstName = action.json.firstName;
             newState.id = action.json._id;
@@ -34,6 +30,10 @@ export default function reducer(state = initialState, action) {
             newState.lastName = action.json.lastName;
             newState.username = action.json.username;
             return newState;
+        }
+        case 'AUTHENTICATION_LOGOUT_FAILURE': {
+            // TODO : handle error!
+            return state;
         }
         default: {
             return state;
