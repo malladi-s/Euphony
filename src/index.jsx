@@ -8,7 +8,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import './css/main.scss';
 
-import Store from './store';
+import configureStore from './store';
+
+const Store = configureStore();
 
 const renderApp = () => ( 
     <Provider store={Store}>
