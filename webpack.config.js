@@ -3,7 +3,7 @@ const { resolve } = require('path');
 module.exports = {
     context: resolve(__dirname, 'src'),
     entry: {
-        app: './index.jsx'
+        app: ['@babel/polyfill', './index.jsx']
     },
     output: {
         filename: '[name].bundle.js',

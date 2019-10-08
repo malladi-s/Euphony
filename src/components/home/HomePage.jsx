@@ -3,7 +3,7 @@ import { Button } from 'reactstrap';
 
 import Sidebar from '../shared/Sidebar';
 
-export default function HomePage() {
+export default function HomePage(props) {
   return (
     <section className="page-content">
       <div className="row">
