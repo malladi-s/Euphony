@@ -1,3 +1,5 @@
+import 'whatwg-fetch';
+
 import { incrementLoader, decrementLoader } from './loader';
 
 export const loginAttempt = () => ({ type: 'AUTHENTICATION_LOGIN_ATTEMPT' });
@@ -28,5 +30,39 @@ export function logUserOut() {
         });
 
         dispatch(decrementLoader());
+    }
+}
+
+
+export function logUserIn(userData) {
+    return async (dispatch) => {
+        dispatch(incrementLoader());
+
+        await fetch(
+            '/api/authentication/login',
+            {
+                method: 'POST',
+                body: JSON.stringify(userData),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'same-origin',
+            },
+        ).then((response) => {
+            if (response.status === 200) {
+                return response.json();
+            }
+            return null;
+        }).then((json) => {
+            if (json) {
+                dispatch(loginSuccess(json));
+            } else {
+                dispatch(loginFailure(new Error('Authentication Failed')));
+            }
+        }).catch((error) => {
+            dispatch(loginFailure(new Error(error)));
+        });
+
+        return dispatch(decrementLoader());
     }
 }
