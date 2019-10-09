@@ -36,7 +36,6 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-    console.log("hi")
     // Create a user object to save, using values from incoming JSON
     const newUser = new User({
         username: req.body.username,
@@ -51,8 +50,15 @@ router.post('/register', (req, res) => {
         if (err) {
             return res.send(JSON.stringify({ error: err }));
         }
-        // Otherwise, for now, send back a JSON object with the new user's info
-        return res.send(JSON.stringify(user));
+        // Otherwise log them in
+        return passport.authenticate('local')(req, res, () => {
+            // If logged in, we should have user info to send back
+            if (req.user) {
+                return res.send(JSON.stringify(req.user));
+            }
+            // Otherwise return an error
+            return res.send(JSON.stringify({ error: 'There was an error logging in' }));
+        });
     });
 });
 
