@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import ErrorBox from './components/shared/ErrorBoxContainer';
 import Header from './components/shared/HeaderContainer';
 import HomePage from './components/home/HomePage';
 import LoginPage from './components/account/LoginPageContainer';
@@ -36,6 +37,7 @@ class App extends React.Component {
                 <div className="wrapper">
                     <Header username="anonymous" authentication={authentication} />
                     <section className="page-content container-fluid">
+                        <ErrorBox />
                         <Route exact path="/" component={HomePage} />
                         <Route exact path="/account/login" component={LoginPage} />
                         <Route exact path="/account/register" component={RegisterPage} />

@@ -5,7 +5,8 @@ import { registrationSuccessViewed } from '../../actions/authentication';
 import RegistrationSuccessPage from './RegistrationSuccessPage';
 
 export class RegistrationSucessPageContainer extends React.Component {
-    componentWillMount() {
+    // TODO : Replace with componentDidMount
+    UNSAFE_componentWillMount() {
         const { dispatch } = this.props;
         dispatch(registrationSuccessViewed());
     }
