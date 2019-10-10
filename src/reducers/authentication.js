@@ -3,6 +3,8 @@ const initialState = {
     id: '',
     isLoggedIn: false,
     isLoggingIn: false,
+    isPasswordChanged: false,
+    isPasswordReset: false,
     lastName: '',
     registrationSucceeded: false,
     username: '',
@@ -35,6 +37,27 @@ export default function reducer(state = initialState, action) {
         case 'AUTHENTICATION_LOGOUT_FAILURE':
         case 'AUTHENTICATION_REGISTRATION_FAILURE': {
             return state;
+        }
+        case 'AUTHENTICATION_PASSWORD_RESET_CLEAR':
+        case 'AUTHENTICATION_PASSWORD_RESET_HASH_FAILURE': {
+            const newState = Object.assign({}, state);
+            newState.isPasswordReset = false;
+            return newState;
+        }
+        case 'AUTHENTICATION_PASSWORD_RESET_HASH_CREATED': {
+            const newState = Object.assign({}, state);
+            newState.isPasswordReset = true;
+            return newState;
+        }
+        case 'AUTHENTICATION_PASSWORD_SAVE_CLEAR': {
+            const newState = Object.assign({}, state);
+            newState.isPasswordChanged = false;
+            return newState;
+        }
+        case 'AUTHENTICATION_PASSWORD_SAVE_SUCCESS': {
+            const newState = Object.assign({}, state);
+            newState.isPasswordChanged = true;
+            return newState;
         }
         case 'AUTHENTICATION_REGISTRATION_SUCCESS': {
             const newState = Object.assign({}, state);

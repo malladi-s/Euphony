@@ -1,3 +1,4 @@
+const appConfig = require('./config.js');
 const cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser')
 const createError = require('http-errors');
@@ -32,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressSession({
   name: 'server-session-cookie-id',
   resave: false,
-  secret: 'secret',
+  secret: appConfig.expressSession.secret,
   saveUninitialized: false,
 }))
 

@@ -45,7 +45,7 @@ export default class RegisterPage extends React.Component {
                     <p>
                         Want to get started saving your favorite bands to MusicList?
                         Create an account! All fields are required.
-              </p>
+                    </p>
                     <AvForm onValidSubmit={this.handleValidSubmit}>
                         <AvGroup>
                             <Label for="email">Email</Label>
@@ -76,11 +76,6 @@ export default class RegisterPage extends React.Component {
                                 value={this.state.password}
                             />
                             <AvFeedback>Passwords must be at least eight characters in length</AvFeedback>
-                            <span>
-                                We recommend a password service like&nbsp;
-                    <a href="https://www.lastpass.com/" target="_blank" rel="noopener noreferrer">LastPass</a>
-                                &nbsp;or <a href="https://1password.com/" target="_blank" rel="noopener noreferrer">1Password</a>
-                            </span>
                         </AvGroup>
 
                         <AvGroup>

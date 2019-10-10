@@ -10,6 +10,8 @@ import LoginPage from './components/account/LoginPageContainer';
 import ProfilePage from './components/account/ProfilePage';
 import RegisterPage from './components/account/RegisterPageContainer';
 import RegistrationSuccessPage from './components/account/RegistrationSuccessPageContainer';
+import ResetPasswordPage from './components/account/ResetPasswordPageContainer';
+import ChangePasswordPage from './components/account/ChangePasswordPageContainer';
 
 import { checkSession } from './actions/authentication';
 
@@ -39,10 +41,12 @@ class App extends React.Component {
                     <section className="page-content container-fluid">
                         <ErrorBox />
                         <Route exact path="/" component={HomePage} />
+                        <Route path="/account/change-password/:hash" component={ChangePasswordPage} />
                         <Route exact path="/account/login" component={LoginPage} />
+                        <Route path="/account/profile/:id" component={ProfilePage} />
                         <Route exact path="/account/register" component={RegisterPage} />
                         <Route exact path="/account/registration-success" component={RegistrationSuccessPage} />
-                        <Route path="/account/profile/:id" component={ProfilePage} />
+                        <Route exact path="/account/reset-password" component={ResetPasswordPage} />
                     </section>
                     <div className="loader-wrapper" style={loader > 0 ? { display: 'block' } : { display: 'none' }}>
                         <div className="loader-box">
