@@ -12,7 +12,6 @@ export default class AlbumsPage extends React.Component {
         this.addAlbum = this.addAlbum.bind(this);
         this.createTable = this.createTable.bind(this);
         this.handleSearchChange = this.handleSearchChange.bind(this);
-        this.handleKeyPress = this.handleKeyPress.bind(this);
         this.handleValidSubmit = this.handleValidSubmit.bind(this);
         this.listAlbums = this.listAlbums.bind(this);
 
@@ -40,23 +39,25 @@ export default class AlbumsPage extends React.Component {
         );
     }
 
+    generateButton(user, album) {
+        return (
+            user.albums.indexOf(album.id) < 0 ?
+                <Button color="primary" outline id={album.id} onClick={this.addAlbum}>
+                    Add To My List
+                </Button> :
+                <span>Already Listed</span>
+        );
+    }
+
     listAlbums(albums) {
-        const { user } = this.props;
+        const { authentication, user } = this.props;
         return albums.map(album => (
             <tr key={album.id}>
                 <td><img src={album.thumb} alt="album thumbnail" width="80" height="80" /></td>
                 <td>{formatTitle(album.title, 1)}</td>
                 <td>{formatTitle(album.title, 0)}</td>
                 <td>{formatGenre(album.genre)}</td>
-                <td>
-                    {
-                        user.albums.indexOf(album.id) < 0 ?
-                        <Button color="primary" outline id={album.id} onClick={this.addAlbum}>
-                                Add To My List
-                        </Button> :
-                        <span>Already Added</span>
-                    }
-                </td>
+                <td>{authentication.username.length > 0 ? this.generateButton(user, album) : null}</td>
             </tr>
         ));
     }
@@ -70,12 +71,6 @@ export default class AlbumsPage extends React.Component {
 
     handleSearchChange(e) {
         this.setState({ searchText: e.target.value });
-    }
-
-    handleKeyPress(target) {
-        if (target.charCode === 13) {
-            this.handleValidSubmit();
-        }
     }
 
     handleValidSubmit() {
@@ -101,7 +96,6 @@ export default class AlbumsPage extends React.Component {
                                     id="search"
                                     name="search"
                                     onChange={this.handleSearchChange}
-                                    onKeyPress={this.handleKeyPress}
                                     placeholder="Queens of the Stone Age"
                                     required
                                     type="text"

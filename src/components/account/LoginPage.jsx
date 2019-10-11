@@ -8,7 +8,6 @@ export default class LoginPage extends React.Component {
         super(props);
 
         this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handleKeyPress = this.handleKeyPress.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleValidSubmit = this.handleValidSubmit.bind(this);
 
@@ -16,13 +15,6 @@ export default class LoginPage extends React.Component {
             email: '',
             password: '',
         };
-    }
-
-
-    handleKeyPress(target) {
-        if (target.charCode === 13) {
-            this.handleValidSubmit();
-        }
     }
 
     handleEmailChange(e) {
@@ -51,7 +43,6 @@ export default class LoginPage extends React.Component {
                                 id="userEmail"
                                 name="email"
                                 onChange={this.handleEmailChange}
-                                onKeyPress={this.handleKeyPress}
                                 placeholder="user@domain.com"
                                 required
                                 type="email"
@@ -65,7 +56,6 @@ export default class LoginPage extends React.Component {
                                 id="userPassword"
                                 name="password"
                                 onChange={this.handlePasswordChange}
-                                onKeyPress={this.handleKeyPress}
                                 placeholder="password"
                                 required
                                 type="password"

@@ -7,7 +7,7 @@ import AlbumsPage from './components/albums/AlbumsPageContainer';
 import ArtistsPage from './components/artists/ArtistsPageContainer';
 import ErrorBox from './components/shared/ErrorBoxContainer';
 import Header from './components/shared/HeaderContainer';
-import HomePage from './components/home/HomePage';
+import HomePage from './components/home/HomePageContainer';
 import ListPage from './components/list/ListPageContainer';
 import LoginPage from './components/account/LoginPageContainer';
 import ProfilePage from './components/account/ProfilePage';

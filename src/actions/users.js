@@ -16,7 +16,6 @@ export function userLookup(username) {
         // turn on spinner
         dispatch(incrementLoader());
 
-        // API call
         await fetch(
             '/api/users/find',
             {

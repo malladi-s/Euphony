@@ -1,6 +1,7 @@
 const appConfig = require('./config.js');
 const cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser')
+const compression = require('compression');
+const bodyParser = require('body-parser')
 const createError = require('http-errors');
 const express = require('express');
 const expressSession = require('express-session');
@@ -30,6 +31,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(expressSession({

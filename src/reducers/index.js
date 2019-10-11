@@ -3,6 +3,7 @@ import AlbumsReducer from '../reducers/albums';
 import ArtistsReducer from '../reducers/artists';
 import AuthenticationReducer from '../reducers/authentication';
 import ErrorReducer from '../reducers/error';
+import LatestReducer from '../reducers/latest';
 import ListReducer from '../reducers/list';
 import LoaderReducer from '../reducers/loader';
 import UserReducer from '../reducers/user';
@@ -13,6 +14,7 @@ const reducers = {
     authentication: AuthenticationReducer,
     error: ErrorReducer,
     list: ListReducer,
+    latest: LatestReducer,
     loader: LoaderReducer,
     user: UserReducer,
 };

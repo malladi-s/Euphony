@@ -8,7 +8,6 @@ export default class ResetPasswordPage extends React.Component {
 
         this.clearPasswordReset = this.clearPasswordReset.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handleKeyPress = this.handleKeyPress.bind(this);
         this.handleValidSubmit = this.handleValidSubmit.bind(this);
 
         this.state = {
@@ -33,12 +32,6 @@ export default class ResetPasswordPage extends React.Component {
 
     handleEmailChange(e) {
         this.setState({ email: e.target.value });
-    }
-
-    handleKeyPress(target) {
-        if (target.charCode === 13) {
-            this.handleValidSubmit();
-        }
     }
 
     // Handle submission once all form data is valid
@@ -81,7 +74,6 @@ export default class ResetPasswordPage extends React.Component {
                                 id="userEmail"
                                 name="email"
                                 onChange={this.handleEmailChange}
-                                onKeyPress={this.handleKeyPress}
                                 placeholder="user@domain.com"
                                 required
                                 type="email"

@@ -10,7 +10,6 @@ export default class ArtistsPage extends React.Component {
         this.addArtist = this.addArtist.bind(this);
         this.createTable = this.createTable.bind(this);
         this.handleSearchChange = this.handleSearchChange.bind(this);
-        this.handleKeyPress = this.handleKeyPress.bind(this);
         this.handleValidSubmit = this.handleValidSubmit.bind(this);
         this.listArtists = this.listArtists.bind(this);
 
@@ -23,13 +22,6 @@ export default class ArtistsPage extends React.Component {
     // update state as search value changes
     handleSearchChange(e) {
         this.setState({ searchText: e.target.value });
-    }
-
-    // catch enter clicks
-    handleKeyPress(target) {
-        if (target.charCode === 13) {
-            this.handleValidSubmit();
-        }
     }
 
     // Handle submission once all form data is valid
@@ -56,21 +48,30 @@ export default class ArtistsPage extends React.Component {
         );
     }
 
+    generateButton(user, artist) {
+        return (
+            user.artists.indexOf(artist.id) < 0 ?
+                <Button color="primary" outline id={artist.id} onClick={this.addArtist}>
+                    Add To My List
+                </Button> :
+                <span>Already Listed</span>
+        );
+    }
+
     listArtists(artists) {
-        const { user } = this.props;
+        const { user, authentication } = this.props;
         return artists.map(artist =>
             (
                 <tr key={artist.id}>
-                    <td><img src={artist.thumb} alt="artist thumbnail" width="80" height="80" /></td>
-                    <td>{artist.title}</td>
-                    <td>
-                        {user.artists.indexOf(artist.id) < 0 ?
-                            <Button color="primary" outline id={artist.id} onClick={this.addArtist}>
-                                Add To My List
-                            </Button> :
-                            <span>Already Listed</span>
-                        }
+                    <td> { 
+                            artist.thumb ? (
+                                <img src={artist.thumb} alt="artist thumbnail" width="80" height="80" />
+                            ) : 
+                            `Image Unavailable`
+                        } 
                     </td>
+                    <td>{artist.title}</td>
+                    <td>{authentication.username.length > 0 ? this.generateButton(user, artist) : null}</td>
                 </tr>
             ));
     }
@@ -98,7 +99,6 @@ export default class ArtistsPage extends React.Component {
                                     id="search"
                                     name="search"
                                     onChange={this.handleSearchChange}
-                                    onKeyPress={this.handleKeyPress}
                                     placeholder="Lorde"
                                     required
                                     type="text"

@@ -7,7 +7,6 @@ export default class RegisterPage extends React.Component {
         super(props);
 
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleKeyPress = this.handleKeyPress.bind(this);
         this.handleValidSubmit = this.handleValidSubmit.bind(this);
 
         this.state = {
@@ -31,13 +30,6 @@ export default class RegisterPage extends React.Component {
         this.setState({ [e.currentTarget.id]: e.target.value });
     }
 
-    handleKeyPress(target) {
-        if (target.charCode === 13) {
-            target.preventDefault();
-            this.handleValidSubmit();
-        }
-    }
-
     render() {
         return (
             <div className="row justify-content-center">
@@ -53,7 +45,6 @@ export default class RegisterPage extends React.Component {
                                 id="email"
                                 name="email"
                                 onChange={this.handleInputChange}
-                                onKeyPress={this.handleKeyPress}
                                 placeholder="user@domain.com"
                                 required
                                 type="email"
@@ -69,7 +60,6 @@ export default class RegisterPage extends React.Component {
                                 minLength="8"
                                 name="password"
                                 onChange={this.handleInputChange}
-                                onKeyPress={this.handleKeyPress}
                                 placeholder="password"
                                 required
                                 type="password"
