@@ -186,7 +186,6 @@ export function savePassword(data) {
         // turn on spinner
         dispatch(incrementLoader());
 
-        // contact the API
         await fetch(
             '/api/authentication/savepassword',
             {

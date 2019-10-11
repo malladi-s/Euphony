@@ -10,6 +10,7 @@ const path = require('path');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
+const artists = require('./routes/api/artists');
 const albums = require('./routes/api/albums')
 const indexRouter = require('./routes/api/index');
 const usersRouter = require('./routes/api/users');
@@ -42,6 +43,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/api/albums', albums);
+app.use('/api/artists', artists);
 app.use('/api/users', usersRouter);
 app.use('/api/authentication', authenticationRouter);
 

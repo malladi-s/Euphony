@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import AlbumsPage from './components/albums/AlbumsPageContainer';
+import ArtistsPage from './components/artists/ArtistsPageContainer';
 import ErrorBox from './components/shared/ErrorBoxContainer';
 import Header from './components/shared/HeaderContainer';
 import HomePage from './components/home/HomePage';
+import ListPage from './components/list/ListPageContainer';
 import LoginPage from './components/account/LoginPageContainer';
 import ProfilePage from './components/account/ProfilePage';
 import RegisterPage from './components/account/RegisterPageContainer';
@@ -49,6 +51,8 @@ class App extends React.Component {
                         <Route exact path="/account/register" component={RegisterPage} />
                         <Route exact path="/account/registration-success" component={RegistrationSuccessPage} />
                         <Route exact path="/account/reset-password" component={ResetPasswordPage} />
+                        <Route exact path="/artists" component={ArtistsPage} />
+                        <Route path="/list/:username" component={ListPage} />
                     </section>
                     <div className="loader-wrapper" style={loader > 0 ? { display: 'block' } : { display: 'none' }}>
                         <div className="loader-box">
