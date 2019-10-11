@@ -153,7 +153,6 @@ export function createHash(email) {
 
         await fetch(
             '/api/authentication/saveresethash',
-            // what to send
             {
                 method: 'POST',
                 body: JSON.stringify({ email }),
@@ -189,9 +188,7 @@ export function savePassword(data) {
 
         // contact the API
         await fetch(
-            // where to contact
             '/api/authentication/savepassword',
-            // what to send
             {
                 method: 'POST',
                 body: JSON.stringify(data),

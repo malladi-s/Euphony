@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import AlbumsPage from './components/albums/AlbumsPageContainer';
 import ErrorBox from './components/shared/ErrorBoxContainer';
 import Header from './components/shared/HeaderContainer';
 import HomePage from './components/home/HomePage';
@@ -44,6 +45,7 @@ class App extends React.Component {
                         <Route path="/account/change-password/:hash" component={ChangePasswordPage} />
                         <Route exact path="/account/login" component={LoginPage} />
                         <Route path="/account/profile/:id" component={ProfilePage} />
+                        <Route exact path="/albums" component={AlbumsPage} />
                         <Route exact path="/account/register" component={RegisterPage} />
                         <Route exact path="/account/registration-success" component={RegistrationSuccessPage} />
                         <Route exact path="/account/reset-password" component={ResetPasswordPage} />

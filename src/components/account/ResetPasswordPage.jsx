@@ -82,7 +82,7 @@ export default class ResetPasswordPage extends React.Component {
                                 name="email"
                                 onChange={this.handleEmailChange}
                                 onKeyPress={this.handleKeyPress}
-                                placeholder="noreply@musiclist.com"
+                                placeholder="user@domain.com"
                                 required
                                 type="email"
                                 value={this.state.email}
